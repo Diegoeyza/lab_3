@@ -1,24 +1,50 @@
-# README
+# Step-by-Step Guide to Create a Rails App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Prerequisites
+Make sure you have the necessary dependencies installed before starting.
 
-Things you may want to cover:
+### Install Ruby and Rails
+```sh
+rbenv install 3.3.6
+rbenv shell 3.3.6
+gem install rails
+gem install bundler
+rbenv rehash
+```
 
-* Ruby version
+### Install PostgreSQL dependencies
+```sh
+sudo apt update
+sudo apt install libpq-dev
+gem install pg
+```
 
-* System dependencies
+### Set Up PostgreSQL User
+Replace `#HomeDirUsername` with your actual home directory username.
+```sh
+sudo -u postgres createuser -s #HomeDirUsername
+```
 
-* Configuration
+## Create a New Rails Application
+Replace `#AppName` with your desired application name.
+```sh
+rails new #AppName --database=postgresql -j esbuild --css bootstrap
+cd #AppName
+rails db:create
+rails server
+```
 
-* Database creation
+## Fixing `application.js` Issues
+If you encounter issues with the app finding `application.js`, follow these steps:
 
-* Database initialization
+```sh
+npm install @hotwired/turbo-rails bootstrap @hotwired/stimulus
+rm -rf node_modules package-lock.json
+npm install
+npm run build
+rails assets:clobber
+rails assets:precompile
+bin/dev
+```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Your Rails app should now be running successfully!
