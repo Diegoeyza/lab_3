@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root "static_pages#home"
   get "/about", to: "static_pages#about"
   get "/contact", to: "static_pages#contact"
+  post "/contact", to: "static_pages#submit_contact"
+
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
