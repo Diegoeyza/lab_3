@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+    #wholeBody {
+        background-color: black;
+        color: #00ffff; 
+        font-family: 'Orbitron', sans-serif; 
+        padding: 20px;
+        position: relative;
+        overflow-x: hidden; 
+    }
+
+    .laser {
+        position: absolute;
+        width: 60%;
+        height: 2px;
+        background: cyan;
+        box-shadow: 0 0 10px cyan, 0 0 20px cyan;
+        opacity: 0.8;
+        animation: moveLaser 3s linear infinite;
+        z-index: -1;
+    }
+
+    @keyframes moveLaser {
+        from { top: 0%; }
+        to { top: 100%; }
+    }
+
+    .laser:nth-child(1) { left: 10%; animation-delay: 0s; background: rgb(255, 57, 57); }
+    .laser:nth-child(2) { left: 30%; animation-delay: 1s; background: rgb(255, 107, 255); }
+    .laser:nth-child(3) { left: 40%; animation-delay: 2s; background: rgb(59, 236, 35); }
+    .laser:nth-child(4) { right: 10%; animation-delay: 0.5s; background: white; }
+    .laser:nth-child(5) { right: 40%; animation-delay: 1.5s; }
+
+    #mainHeader {
+        text-align: center;
+        font-size: 3rem;
+        text-shadow: 0 0 10px cyan, 0 0 20px cyan;
+        margin-bottom: 10px;
+    }
+
+    #invitation {
+        text-align: center;
+        font-size: 1.5rem;
+        color: #ffffff;
+        text-shadow: 0 0 5px cyan;
+        margin-bottom: 30px;
+    }
+
+    .info, .info1 {
+        background: rgba(0, 255, 255, 0.1);
+        border: 1px solid cyan;
+        box-shadow: 0 0 15px cyan;
+        padding: 15px;
+        margin: 20px auto;
+        width: 80%; 
+        max-width: 800px; 
+        border-radius: 10px;
+    }
+
+    ul {
+        margin-left: 5%;
+        padding: 0;
+    }
+
+    ul li {
+        padding: 5px;
+        font-size: 1.2rem;
+        text-shadow: 0 0 5px cyan;
+    }
+
+    a {
+        color: #ff0000; 
+        text-shadow: 0 0 5px rgb(255, 0, 0), 0 0 10px magenta;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+    }
+
+    a:hover {
+        color: white;
+        text-shadow: 0 0 10px white, 0 0 20px white;
+    }
+
+    h3 {
+        text-align: center;
+        font-size: 1.5rem;
+        margin-top: 30px;
+        text-shadow: 0 0 5px cyan;
+    }
+
+    .par {
+        text-align: center;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #ffffff;
+        text-shadow: 0 0 8px cyan, 0 0 20px cyan; 
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.5); 
+        border-radius: 8px;
+        border: 1px solid cyan;
+        box-shadow: 0 0 15px cyan;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    @media (max-width: 768px) {
+        .laser {
+            width: 90%; 
+        }
+
+        .info, .info1 {
+            width: 90%; 
+        }
+
+        #mainHeader {
+            font-size: 2.5rem; 
+        }
+
+        #invitation {
+            font-size: 1.2rem; 
+        }
+
+        .par {
+            font-size: 1rem; 
+        }
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid cyan;
+        color: #ffffff;
+    }
+
+    th {
+        background-color: rgba(0, 255, 255, 0.2);
+        font-size: 1.2rem;
+        text-shadow: 0 0 5px cyan;
+    }
+
+    button {
+        background-color: transparent;
+        border: 2px solid #00ffff;
+        color: #00ffff;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+        text-shadow: 0 0 5px cyan, 0 0 10px cyan;
+        margin-top: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    button:hover {
+        background-color: #00ffff;
+        color: black;
+        text-shadow: 0 0 20px white, 0 0 30px white;
+        box-shadow: 0 0 10px cyan, 0 0 20px cyan;
+    }
+
+    #button {
+        background-color: transparent;
+        border: 2px solid #00ffff;
+        color: #00ffff;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+        text-shadow: 0 0 5px cyan, 0 0 10px cyan;
+        margin-bottom: 30px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #button:hover {
+        background-color: #00ffff;
+        color: black;
+        text-shadow: 0 0 20px white, 0 0 30px white;
+        box-shadow: 0 0 10px cyan, 0 0 20px cyan;
+    }
+
+    td {
+        background-color: rgba(0, 0, 0, 0.5);
+        text-shadow: 0 0 5px cyan;
+    }
+
+    tr:nth-child(even) {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    tr:hover {
+        background-color: rgba(0, 255, 255, 0.1);
+    }
+
+    #textContainer {
+        position: absolute;
+        top: 50%; 
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        text-align: center;
+        color: #00ffff;
+        font-size: 2rem;
+        text-shadow: 0 0 10px cyan, 0 0 20px cyan;
+    }
+
+    #nameInput {
+        display: block;
+        margin: 10px auto;
+        padding: 10px;
+        font-size: 1.2rem;
+        color: #00ffff;
+        background-color: rgba(0, 0, 0, 0.5);
+        border: 1px solid cyan;
+        border-radius: 5px;
+        box-shadow: 0 0 10px cyan;
+        text-align: center;
+    }
+
+    .fallingText {
+        position: absolute;
+        bottom: -50px;
+        font-size: 2rem;
+        color: #00ffff;
+        text-shadow: 0 0 10px cyan, 0 0 20px cyan;
+        animation: fall 4s linear forwards;
+        z-index: 1;
+        opacity: 0;
+    }
+
+
+
+    @keyframes fall {
+        0% {
+            bottom: 0%;
+            opacity: 1; 
+        }
+        100% {
+            bottom: 105%;
+            opacity: 0.2; 
+        }
+    }
+
+    #nameInput::placeholder {
+        color: white;
+        opacity: 0.5; 
+    }
+
+    #accordionNewsButton {
+        font-size: 40px;
+        background-color: transparent;
+        border: 2px solid #00ffff;
+        color: #00ffff;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.2rem;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: all 0.3s ease-in-out;
+        text-shadow: 0 0 5px cyan, 0 0 10px cyan;
+        margin-bottom: 30px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+
+    </style>
+
+    <script>
+    function createFallingText() {
+        var nameInput = document.getElementById('nameInput').value;
+        var wholeBody = document.getElementById('wholeBody');
+        var existingFallingText = document.querySelectorAll('.fallingText');
+        existingFallingText.forEach(function(text) {
+            text.remove();
+        });
+        if (nameInput) {
+            const colorList = [
+                "rgb(255, 0, 255)", 
+                "rgb(0, 255, 255)", 
+                "rgb(255, 255, 0)", 
+                "rgb(0, 255, 0)", 
+                "rgb(255, 0, 0)", 
+                "rgb(255, 128, 0)", 
+                "rgb(255, 20, 147)", 
+                "rgb(0, 128, 128)", 
+                "rgb(75, 0, 130)", 
+                "rgb(255, 105, 180)", 
+                "rgb(240, 128, 128)", 
+                "rgb(100, 149, 237)", 
+                "rgb(50, 205, 50)", 
+                "rgb(255, 255, 255)", 
+                "rgb(255, 69, 0)", 
+                "rgb(238, 130, 238)", 
+                "rgb(255, 160, 122)", 
+                "rgb(255, 182, 193)", 
+                "rgb(128, 0, 128)", 
+                "rgb(255, 0, 255)", 
+                "rgb(255, 0, 255)", 
+                "rgb(138, 43, 226)", 
+                "rgb(186, 85, 211)", 
+                "rgb(64, 224, 208)", 
+                "rgb(30, 144, 255)", 
+                "rgb(255, 140, 0)", 
+                "rgb(139, 0, 139)", 
+                "rgb(255, 99, 71)", 
+                "rgb(255, 228, 225)", 
+                "rgb(255, 215, 0)", 
+                "rgb(0, 255, 0)", 
+                "rgb(0, 0, 255)", 
+                "rgb(34, 139, 34)", 
+                "rgb(255, 127, 80)", 
+                "rgb(186, 85, 211)", 
+                "rgb(0, 255, 255)", 
+                "rgb(255, 105, 180)", 
+                "rgb(138, 43, 226)", 
+                "rgb(255, 99, 71)", 
+                "rgb(255, 0, 255)", 
+                "rgb(255, 127, 80)", 
+                "rgb(0, 255, 255)", 
+                "rgb(255, 20, 147)", 
+                "rgb(173, 216, 230)", 
+                "rgb(255, 165, 0)", 
+                "rgb(255, 182, 193)", 
+                "rgb(250, 128, 114)", 
+                "rgb(255, 228, 225)", 
+                "rgb(255, 140, 0)", 
+                "rgb(255, 165, 0)", 
+                "rgb(255, 255, 0)", 
+                "rgb(255, 69, 0)", 
+                "rgb(30, 144, 255)", 
+                "rgb(238, 130, 238)", 
+                "rgb(144, 238, 144)", 
+                "rgb(100, 149, 237)", 
+                "rgb(0, 128, 0)", 
+                "rgb(75, 0, 130)", 
+                "rgb(221, 160, 221)", 
+                "rgb(218, 165, 32)", 
+                "rgb(255, 105, 180)", 
+                "rgb(255, 105, 180)", 
+                "rgb(255, 160, 122)", 
+                "rgb(240, 128, 128)", 
+                "rgb(255, 69, 0)", 
+                "rgb(255, 165, 0)", 
+                "rgb(255, 20, 147)", 
+                "rgb(255, 0, 255)", 
+                "rgb(0, 255, 255)", 
+                "rgb(0, 0, 255)", 
+                "rgb(255, 140, 0)", 
+                "rgb(255, 99, 71)", 
+                "rgb(139, 0, 139)", 
+                "rgb(186, 85, 211)", 
+                "rgb(240, 128, 128)", 
+                "rgb(255, 160, 122)", 
+                "rgb(255, 105, 180)", 
+                "rgb(173, 216, 230)", 
+                "rgb(0, 255, 0)", 
+                "rgb(255, 20, 147)", 
+                "rgb(255, 165, 0)", 
+                "rgb(100, 149, 237)", 
+                "rgb(255, 255, 255)"
+            ];
+            let currentColor=0
+
+            for (let j = 0; j<11; j++){
+                let iterationDelay = j * 2;
+                for (let i = 0; i < nameInput.length; i++) {
+                    var fallingText = document.createElement('div');
+                    fallingText.classList.add('fallingText');
+                    fallingText.textContent = nameInput[i];
+                    var delay = i * 0.2 + iterationDelay;
+                    fallingText.style.animationDelay = `${delay}s`;
+                    fallingText.style.color= colorList[currentColor];
+                    fallingText.style.left = `${j*10 + Math.random() * 10}%`;
+                    wholeBody.appendChild(fallingText);
+                    currentColor++;
+                    if (currentColor>=colorList.length) currentColor=0
+                }
+            }
+        }
+    }
+
+    /*---------------------------------------------------------------------------------------------------------------------------- this is what I modified, change the app url if broken*/
+
+    const API_KEY = '5e4b6cdcdfb24438b1d949bc743ac9d8'; 
+    const CATEGORY = 'technology';  
+    const API_URL = `https://newsapi.org/v2/top-headlines?category=${CATEGORY}&pageSize=10&apiKey=${API_KEY}`;
+
+    async function fetchNews() {
+        /*const API_URL = `https://diegoeyza-github-io.onrender.com/news`;*/
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        if (data.status === "ok") {
+            displayNews(data.articles.slice(0, 10));
+        } else {
+            console.error("Error fetching news:", data);
+        }
+    }
+
+    function displayNews(articles) {
+        const newsContainer = document.getElementById("newsAccordion");
+        newsContainer.innerHTML = articles.map((article, index) => `
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading${index}">
+                    <button class="accordion-button ${index === 0 ? '' : 'collapsed'}" type="button" 
+                        data-bs-toggle="collapse" data-bs-target="#collapse${index}" 
+                        aria-expanded="${index === 0}" aria-controls="collapse${index}">
+                        ${article.title}
+                    </button>
+                </h2>
+                <div id="collapse${index}" class="accordion-collapse collapse ${index === 0 ? 'show' : ''}" 
+                    aria-labelledby="heading${index}" data-bs-parent="#newsAccordion">
+                    <div class="accordion-body">
+                        <strong>${article.source.name}</strong> - ${article.publishedAt}
+                        <p>${article.description || "No description available."}</p>
+                        <a href="${article.url}" target="_blank" class="btn btn-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    fetchNews();
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body id="wholeBody">
+    <div class="laser"></div>
+    <div class="laser"></div>
+    <div class="laser"></div>
+    <div class="laser"></div>
+    <div class="laser"></div>
+    
+    <div class="container">
+        <h1 id="mainHeader">
+            Hey there, I´m Diego
+        </h1>
+        <h2 id="invitation">
+            I invite you to look arround and find out more about me
+        </h2>
+        <div class="info1">
+            <p class="par">
+                About Me
+            </p>
+            <ul>
+                <li>
+                    Computer Engineering student at Universidad de los Andes (2022-Now)
+                </li>
+                <li>
+                    Currently researching ML implementations in the biomedical field
+                </li>
+                <li>
+                    On my spare time I do Taekwondo (Black belt 1st Dan), play the piano and play videogames
+                </li>
+            </ul>
+        </div>
+        <div class="row mb-3 text-center">
+            <div class="info col-lg-4 themed-grid-col">
+                <p class="par">
+                    My tech stack
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Skill</th>
+                            <th>Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Python</td>
+                            <td>Advanced</td>
+                        </tr>
+                        <tr>
+                            <td>C++</td>
+                            <td>Advanced</td>
+                        </tr>
+                        <tr>
+                            <td>C</td>
+                            <td>Intermediate</td>
+                        </tr>
+                        <tr>
+                            <td>JavaScript</td>
+                            <td>Intermediate</td>
+                        </tr>
+                        <tr>
+                            <td>SQL</td>
+                            <td>Intermediate</td>
+                        </tr>
+                        <tr>
+                            <td>VBA</td>
+                            <td>Intermediate</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="info col-lg-4 themed-grid-col">
+                <p class="par">
+                    Tools that I use
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tool</th>
+                            <th>Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Google App Scripts</td>
+                            <td>Advanced</td>
+                        </tr>
+                        <tr>
+                            <td>Postgres</td>
+                            <td>Intermediate</td>
+                        </tr>
+                        <tr>
+                            <td>React</td>
+                            <td>Intermediate</td>
+                        </tr>
+                        <tr>
+                            <td>HTML+CSS</td>
+                            <td>Intermediate</td>
+                        </tr>
+                        <tr>
+                            <td>Django</td>
+                            <td>Basic</td>
+                        </tr>
+                        <tr>
+                            <td>Pytorch</td>
+                            <td>Basic</td>
+                        </tr>
+                        <tr>
+                            <td>Firebase</td>
+                            <td>Basic</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info col-lg-4 themed-grid-col">
+                <p class="par">
+                    Additional skills
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Skill</th>
+                            <th>Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>English</td>
+                            <td>C1</td>
+                        </tr>
+                        <tr>
+                            <td>Spanish</td>
+                            <td>Native</td>
+                        </tr>
+                        <tr>
+                            <td>Markdown</td>
+                            <td>Regular</td>
+                        </tr>
+                        <tr>
+                            <td>HDL</td>
+                            <td>Regular</td>
+                        </tr>
+                        <tr>
+                            <td>LaTeX</td>
+                            <td>Basic</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        
+
+        <h3>
+            Check out my Github:
+            <a href="https://github.com/Diegoeyza" target="_blank">
+                <img src="https://github.com/Diegoeyza.png" alt="GitHub Profile Picture" style="width: 40px; height: 40px; border-radius: 50%; margin-left: 10px;">
+                Github Profile
+            </a>
+        </h3>
+
+        
+
+        <form>
+            <div class="container text-center">
+                <input type="text" id="nameInput" class="form-control mb-3" id="custom-placeholder"placeholder="Type your name here">
+                <button type="button" class="btn btn-primary" id="button" onclick="createFallingText()">Start!!</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container mt-5">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingNews">
+                <button class="accordion-button collapsed" id="accordionNewsButton" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNews" aria-expanded="false" aria-controls="collapseNews"> Top 10 Tech News</button>
+            </h2>
+            <div id="collapseNews" class="accordion-collapse collapse" aria-labelledby="headingNews" data-bs-parent="#menuAccordion">
+                <div class="accordion-body">
+                    <div class="accordion" id="newsAccordion"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

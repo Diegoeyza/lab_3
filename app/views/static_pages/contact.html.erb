@@ -1,24 +1,106 @@
-<div class="container">
-  <h1>Contact Us</h1>
-  <p>Fill out the form below, and we’ll get back to you soon.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Futuristic</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            color: #00ffff;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
 
-  <%= form_with url: "/contact", method: "post", local: true do %>
-    <div class="mb-3">
-      <%= label_tag :name, "Name" %>
-      <%= text_field_tag :name, nil, class: "form-control" %>
-    </div>
-    <div class="mb-3">
-      <%= label_tag :email, "Email" %>
-      <%= email_field_tag :email, nil, class: "form-control" %>
-    </div>
-    <div class="mb-3">
-      <%= label_tag :message, "Message" %>
-      <%= text_area_tag :message, nil, class: "form-control" %>
-    </div>
-    <%= submit_tag "Submit", class: "btn btn-primary" %>
-  <% end %>
+        .container {
+            padding: 50px;
+            border: 2px solid cyan;
+            box-shadow: 0 0 20px cyan;
+            border-radius: 15px;
+            background: rgba(0, 255, 255, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
 
-  <% if flash[:notice] %>
-    <div class="alert alert-success mt-3"><%= flash[:notice] %></div>
-  <% end %>
-</div>
+        h1 {
+            text-shadow: 0 0 10px cyan, 0 0 20px cyan;
+            font-size: 3rem;
+        }
+
+        p {
+            text-shadow: 0 0 5px cyan;
+            font-size: 1.2rem;
+        }
+
+        label {
+            text-shadow: 0 0 5px cyan;
+        }
+
+        .form-control {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 1px solid cyan;
+            color: #00ffff;
+            box-shadow: 0 0 10px cyan;
+        }
+
+        .form-control:focus {
+            background-color: rgba(0, 255, 255, 0.1);
+            border-color: cyan;
+            box-shadow: 0 0 15px cyan;
+            color: white;
+        }
+
+        .btn-custom {
+            background: transparent;
+            border: 2px solid cyan;
+            color: #00ffff;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            text-shadow: 0 0 5px cyan, 0 0 10px cyan;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-custom:hover {
+            background: #00ffff;
+            color: black;
+            box-shadow: 0 0 10px cyan, 0 0 20px cyan;
+        }
+
+        .alert-success {
+            background-color: rgba(0, 255, 255, 0.2);
+            border: 1px solid cyan;
+            box-shadow: 0 0 10px cyan;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>Fill out the form below, and we’ll get back to you soon.</p>
+
+        <%= form_with url: "/contact", method: "post", local: true do %>
+            <div class="mb-3">
+                <%= label_tag :name, "Name" %>
+                <%= text_field_tag :name, nil, class: "form-control" %>
+            </div>
+            <div class="mb-3">
+                <%= label_tag :email, "Email" %>
+                <%= email_field_tag :email, nil, class: "form-control" %>
+            </div>
+            <div class="mb-3">
+                <%= label_tag :message, "Message" %>
+                <%= text_area_tag :message, nil, class: "form-control" %>
+            </div>
+            <%= submit_tag "Submit", class: "btn btn-custom" %>
+        <% end %>
+
+        <% if flash[:notice] %>
+            <div class="alert alert-success mt-3"><%= flash[:notice] %></div>
+        <% end %>
+    </div>
+</body>
+</html>
